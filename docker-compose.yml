@@ -39,7 +39,7 @@ services:
         max-file: "10"
         max-size: "50m"
 
- cardano-submit-api:
+  cardano-submit-api:
     image: inputoutput/cardano-submit-api:1.33.0
     environment:
       - NETWORK=${NETWORK:-mainnet}

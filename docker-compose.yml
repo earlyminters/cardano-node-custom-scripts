@@ -44,7 +44,7 @@ services:
     entrypoint: []
     command: bash -c "
         ([[ $$NETWORK == \"mainnet\" ]] && /nix/store/pqz67667pd8d1which6032hkp2jy803c-cardano-submit-api) ||
-        (/nix/store/0aggcl0v8w7px1y3pql3sl2y2fsxz7gg-cardano-submit-api-mainnet/bin/cardano-submit-api-mainnet)
+        (/nix/store/g2qqp1nad3lnkg6mgpp7mdaz1jsx0j8f-cardano-submit-api-mainnet/bin/cardano-submit-api-mainnet)
       "
     environment:
       - NETWORK=${NETWORK:-mainnet}

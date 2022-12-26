@@ -5,6 +5,7 @@ services:
     image: inputoutput/cardano-node:latest
     environment:
       NETWORK:
+      CARDANO_NODE_SOCKET_PATH: /ipc/node.socket
     volumes:
       - node-${NETWORK}-db:/data
       - node-ipc:/ipc
@@ -39,13 +40,9 @@ services:
         max-file: "10"
         max-size: "50m"
 
+
   cardano-submit-api:
     image: inputoutput/cardano-submit-api:latest
-    entrypoint: []
-    command: bash -c "
-        ([[ $$NETWORK == \"mainnet\" ]] && /nix/store/pqz67667pd8d1which6032hkp2jy803c-cardano-submit-api) ||
-        (/nix/store/0aggcl0v8w7px1y3pql3sl2y2fsxz7gg-cardano-submit-api-mainnet/bin/cardano-submit-api-mainnet)
-      "
     environment:
       - NETWORK=${NETWORK:-mainnet}
     depends_on:
@@ -61,13 +58,12 @@ services:
         max-size: "200k"
         max-file: "10"
 
-
 volumes:
   node-mainnet-db:
-  node-testnet-db:
-  node-alonzo-purple-db:
   wallet-mainnet-db:
-  wallet-testnet-db:
-  wallet-alonzo-purple-db:
+  node-preprod-db:
+  wallet-preprod-db:
+  node-preview-db:
+  wallet-preview-db:
   node-ipc:
   node-config:
